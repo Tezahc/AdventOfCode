@@ -37,3 +37,13 @@ for jolt_values in jolts:
         if flag == 'y': break
 
 logging.info(f"Maximum joltage : {answer_pt1}")
+
+# === PARTIE 2 ===
+jolts = get_file_input()
+answer_pt2 = 0
+
+for jolt_values in jolts:
+    res = find_max_joltage(jolt_values, 12)
+    answer_pt2 += res
+
+logging.info(f"Maximum joltage OVERCHARGED : {answer_pt2}")
