@@ -1,6 +1,5 @@
 import logging
-from pathlib import Path
-from ..utils import read_input
+from aoc2025.utils import read_input
 
 logging.basicConfig(level=logging.INFO)
 
