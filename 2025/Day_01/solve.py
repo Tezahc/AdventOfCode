@@ -76,7 +76,7 @@ for dir, val in lines_part_2:
     # debug helper
     logging.debug(f"==== Nouvelle étape ====")
     logging.debug(f"direction : {dir}, value : {val}")
-    if logging._Level == logging.DEBUG:
+    if logging.getLogger().isEnabledFor(logging.DEBUG):
         flag = input("stop ?")
         if flag == 'y': break
 
