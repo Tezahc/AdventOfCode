@@ -1,12 +1,8 @@
 import logging
 from pathlib import Path
+from ..utils import read_input
 
 logging.basicConfig(level=logging.INFO)
-
-def get_file_input(file:str | Path = 'inputfile.txt'):
-    with Path(file).resolve().open("r") as f:
-        for line in f:
-            yield line.strip()
 
 def digit_lookup(digits:str, start:int=None, end:int=None) -> str:
     digit = max(int(i) for i in digits[start:end])
@@ -33,7 +29,7 @@ def find_max_joltage(jolt_values:str, batt_len:int = 2, acc:list = None) -> int:
 
 
 # === PARTIE 1 ===
-jolts = get_file_input()
+jolts = read_input()
 answer_pt1 = 0
 
 for jolt_values in jolts:
@@ -47,7 +43,7 @@ for jolt_values in jolts:
 logging.info(f"Maximum joltage : {answer_pt1}")
 
 # === PARTIE 2 ===
-jolts = get_file_input()
+jolts = read_input()
 answer_pt2 = 0
 
 for jolt_values in jolts:
