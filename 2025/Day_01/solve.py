@@ -5,7 +5,6 @@ from collections import Counter
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 dial = 50
-logging.info(f"Dial : {dial}")
 values = Counter()
 
 def get_dial_changes(filepath:str | Path):
@@ -42,5 +41,22 @@ def part_1(dial_start = 50):
         dial %= 100
         logging.debug(f"dial mod 100 : {dial}")
         values[dial] += 1
+    return values[0]
+part_1_code = part_1()
+logging.info(f"nombre de fois où le coffre affiche zéro : {part_1_code}")
+logging.info(f"Partie 2 :")
+values.clear()
+lines_part_2 = get_dial_changes('inputfile.txt')
+for dir, val in lines_part_2:
+    logging.debug(f"==== Nouvelle étape ====")
+    logging.debug(f"direction : {dir}, value : {val}")
+    for i in range(val):
+        logging.debug(f"dial before step: {dial}, direction {dir}, step {i}")
+        dial += dir
+        dial %= 100
+        values[dial] += 1
+        logging.debug(f"dial after step: {dial}, direction {dir}, step {i}")
+    # flag = input("stop ?")
+    # if flag == 'y': break
 
-logging.info(f"nombre de fois où le coffre affiche zéro : {values[0]}")
+logging.info(f"Nombre de fois où le pointeur passe par zéro : {values[0]}")
