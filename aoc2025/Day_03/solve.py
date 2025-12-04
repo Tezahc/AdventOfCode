@@ -3,23 +3,19 @@ from aoc2025.utils import read_input
 
 logging.basicConfig(level=logging.INFO)
 
-def digit_lookup(digits:str, start:int=None, end:int=None) -> str:
-    digit = max(int(i) for i in digits[start:end])
-    return str(digit)
-
 def find_max_joltage(jolt_values:str, batt_len:int = 2, acc:list = None) -> int:
     if acc is None: acc = []
     logging.debug(f"début fonction : {jolt_values}, {batt_len}, {acc}")
 
     # condition de fin : dernier chiffre à trouvé
     if batt_len - 1 == 0:
-        acc.append(digit_lookup(jolt_values))
+        acc.append(max(jolt_values))
         # renvoie le nombre assemblé
         logging.debug(f"retour de fontion : {acc}")
 
         return int(''.join(acc))
     
-    nth_digit = digit_lookup(jolt_values, end=-(batt_len-1) )
+    nth_digit = max(jolt_values[:-(batt_len-1)])
     nth_digit_position = jolt_values.find(nth_digit)
     acc.append(nth_digit)
     logging.debug(f"avant appel récursif : digit={nth_digit} - pos={nth_digit_position} - cumul={acc}")
